@@ -1,4 +1,4 @@
-require "blog/command/build"
+require 'blog/command/build'
 
 module Blog
   # Blog CLI
@@ -37,16 +37,14 @@ module Blog
 
     # @return [Boolean] whether CLI is needed for help
     def help_needed?
-      @arguments.include?("-h") || @arguments.include?("--help")
+      @arguments.include?('-h') || @arguments.include?('--help')
     end
 
     # @return [Command::Build, nil] command found by arguments
     def command
       case @arguments.first
-      when "build"
+      when 'build'
         Command::Build.new
-      else
-        nil
       end
     end
   end
