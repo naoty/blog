@@ -16,5 +16,13 @@ module Blog
           -h --help  Show this message
       TEXT
     end
+
+    def test_command_not_found
+      error_output = StringIO.new
+      cli = CLI.new(arguments: ["foo"], error_output: error_output)
+
+      assert_raises(SystemExit) { cli.run }
+      assert error_output.string.start_with?("command not found:")
+    end
   end
 end

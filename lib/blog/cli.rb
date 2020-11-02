@@ -1,3 +1,5 @@
+require "blog/command/build"
+
 module Blog
   # Blog CLI
   class CLI
@@ -22,6 +24,7 @@ module Blog
     # Run +blog+ command with arguments
     def run
       stop_with HELP_MESSAGE if help_needed?
+      stop_with "command not found: #{@arguments.first}" if command.nil?
     end
 
     private
@@ -35,6 +38,16 @@ module Blog
     # @return [Boolean] whether CLI is needed for help
     def help_needed?
       @arguments.include?("-h") || @arguments.include?("--help")
+    end
+
+    # @return [Command::Build, nil] command found by arguments
+    def command
+      case @arguments.first
+      when "build"
+        Command::Build.new
+      else
+        nil
+      end
     end
   end
 end
