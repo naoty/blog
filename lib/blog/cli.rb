@@ -25,7 +25,7 @@ module Blog
     # Run +blog+ command with arguments
     def run
       stop_with HELP_MESSAGE if help_needed?
-      stop_with "usage: blog build <source>" if source.nil?
+      stop_with 'usage: blog build <source>' if source.nil?
       stop_with "command not found: #{@arguments.first}" if command.nil?
 
       command.run

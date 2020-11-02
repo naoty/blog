@@ -27,7 +27,7 @@ module Blog
 
     def test_command_not_found
       error_output = StringIO.new
-      cli = CLI.new(arguments: ['foo', 'source'], error_output: error_output)
+      cli = CLI.new(arguments: %w[foo source], error_output: error_output)
 
       assert_raises(SystemExit) { cli.run }
       assert error_output.string.start_with?('command not found:')

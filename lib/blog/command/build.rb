@@ -8,8 +8,7 @@ module Blog
       end
 
       # Run +blog build+ command
-      def run
-      end
+      def run; end
     end
   end
 end
