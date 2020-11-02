@@ -25,6 +25,8 @@ module Blog
     def run
       stop_with HELP_MESSAGE if help_needed?
       stop_with "command not found: #{@arguments.first}" if command.nil?
+
+      command.run
     end
 
     private
@@ -42,10 +44,10 @@ module Blog
 
     # @return [Command::Build, nil] command found by arguments
     def command
-      case @arguments.first
-      when 'build'
-        Command::Build.new
-      end
+      @command ||= case @arguments.first
+                   when 'build'
+                     Command::Build.new
+                   end
     end
   end
 end
