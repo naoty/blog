@@ -21,16 +21,18 @@ module Blog
 
     # Run +blog+ command with arguments
     def run
-      if help_needed?
-        @output.puts HELP_MESSAGE
-        exit
-      end
-
-      raise NotImplementedError
+      stop_with HELP_MESSAGE if help_needed?
     end
 
     private
 
+    # @param [String] message message printed when exit
+    def stop_with(message)
+      @error_output.puts message
+      exit 1
+    end
+
+    # @return [Boolean] whether CLI is needed for help
     def help_needed?
       @arguments.include?("-h") || @arguments.include?("--help")
     end
