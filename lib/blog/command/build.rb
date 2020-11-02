@@ -1,5 +1,3 @@
-require 'blog/post_repository'
-
 module Blog
   module Command
     # +blog build+ command
