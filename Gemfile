@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'html-pipeline'
 gem 'commonmarker'
+gem 'html-pipeline'
 gem 'rubocop', require: false
 gem 'simplecov', require: false, group: :test
