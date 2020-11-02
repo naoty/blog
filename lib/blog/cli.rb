@@ -1,4 +1,5 @@
 require 'blog/command/build'
+require 'pathname'
 
 module Blog
   # Blog CLI
@@ -24,6 +25,7 @@ module Blog
     # Run +blog+ command with arguments
     def run
       stop_with HELP_MESSAGE if help_needed?
+      stop_with "usage: blog build <source>" if source.nil?
       stop_with "command not found: #{@arguments.first}" if command.nil?
 
       command.run
@@ -42,11 +44,16 @@ module Blog
       @arguments.include?('-h') || @arguments.include?('--help')
     end
 
+    # @return [Pathname] path to the directory Post data are persisted
+    def source
+      @source ||= @arguments.length >= 2 ? Pathname.pwd.join(@arguments[1]) : nil
+    end
+
     # @return [Command::Build, nil] command found by arguments
     def command
       @command ||= case @arguments.first
                    when 'build'
-                     Command::Build.new
+                     Command::Build.new(source: source)
                    end
     end
   end
