@@ -1,6 +1,8 @@
 module Blog
   # the post of blog
   class Post
+    attr_reader :id, :time, :title, :tags, :body
+
     # @param [Integer] id the ID of post
     # @param [String] title the title of post
     # @param [Time] time the published time of post
