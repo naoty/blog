@@ -10,6 +10,8 @@ module Blog
       assert_raises(SystemExit) { cli.run }
       assert_equal <<~TEXT, error_output.string
         Usage:
+          blog build <source>
+          blog serve <source>
           blog -h | --help
 
         Options:
@@ -46,7 +48,7 @@ module Blog
       cli = CLI.new(arguments: ['build'], error_output: error_output)
 
       assert_raises(SystemExit) { cli.run }
-      assert_equal "usage: blog build <source>\n", error_output.string
+      assert_equal "usage: blog (build | serve) <source>\n", error_output.string
     end
 
     def test_command_not_found
