@@ -29,6 +29,18 @@ module Blog
       assert mock.verify
     end
 
+    def test_run_serve_command
+      mock = Minitest::Mock.new
+      mock.expect(:run, nil)
+      mock.expect(:nil?, false)
+
+      Command::Serve.stub(:new, mock) do
+        CLI.new(arguments: %w[serve source]).run
+      end
+
+      assert mock.verify
+    end
+
     def test_source_not_found
       error_output = StringIO.new
       cli = CLI.new(arguments: ['build'], error_output: error_output)

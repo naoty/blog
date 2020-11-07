@@ -1,4 +1,3 @@
-require 'blog/command/build'
 require 'pathname'
 
 module Blog
@@ -54,6 +53,8 @@ module Blog
       @command ||= case @arguments.first
                    when 'build'
                      Command::Build.new(source: source)
+                   when 'serve'
+                     Command::Serve.new
                    end
     end
   end
