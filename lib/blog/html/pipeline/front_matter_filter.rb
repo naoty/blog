@@ -17,7 +17,7 @@ module Blog
         private
 
         def parse_front_matter(text)
-          result = YAML.safe_load(text, [Time]).transform_keys(&:to_sym)
+          result = YAML.safe_load(text, permitted_classes: [Time]).transform_keys(&:to_sym)
 
           case result
           when Hash
