@@ -5,8 +5,10 @@ module Blog
   module Command
     # +blog serve+ command
     class Serve
-      def initialize
-        @application = Rack::Application.new
+      # @param [Pathname] source the source of Posts
+      def initialize(source:)
+        post_repository = PostRepository.new(source: source)
+        @application = Rack::Application.new(post_repository: post_repository)
       end
 
       def run

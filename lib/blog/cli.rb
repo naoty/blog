@@ -56,7 +56,7 @@ module Blog
                    when 'build'
                      Command::Build.new(source: source)
                    when 'serve'
-                     Command::Serve.new
+                     Command::Serve.new(source: source)
                    end
     end
   end
