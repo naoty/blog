@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'pathname'
 
 # Top-level namespace
 module Blog
@@ -7,4 +8,10 @@ module Blog
   autoload :PostRepository, 'blog/post_repository'
   autoload :Post, 'blog/post'
   autoload :PostsRenderer, 'blog/posts_renderer'
+
+  # Return root path of this repository
+  # @return [Pathname] the root path of this repository
+  def self.root_path
+    @root_path ||= Pathname.new(__dir__).parent
+  end
 end
