@@ -1,6 +1,7 @@
 require 'test_helper'
 require 'tmpdir'
 require 'nokogiri'
+require 'fileutils'
 
 module Blog
   module Command
@@ -65,6 +66,9 @@ module Blog
 
           document = Nokogiri::HTML(index_path.read)
           assert_equal POST_NUMBER, document.search('li').length
+
+          static_file_path = public_path.join('404.html')
+          assert static_file_path.exist?
         end
       end
     end

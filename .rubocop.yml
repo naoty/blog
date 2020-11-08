@@ -1,5 +1,9 @@
 AllCops:
   NewCops: enable
 
+Metrics/MethodLength:
+  Exclude:
+    - 'test/**/*.rb'
+
 Style/FrozenStringLiteralComment:
   Enabled: false
