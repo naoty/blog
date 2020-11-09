@@ -8,6 +8,7 @@ module Blog
   autoload :PostRepository, 'blog/post_repository'
   autoload :Post, 'blog/post'
   autoload :PostsRenderer, 'blog/posts_renderer'
+  autoload :Rack, 'blog/rack'
 
   # Return root path of this repository
   # @return [Pathname] the root path of this repository
