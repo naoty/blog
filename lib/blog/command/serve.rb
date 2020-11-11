@@ -10,6 +10,7 @@ module Blog
         base_app = ::Rack::Files.new(@public_path)
 
         @rack_app = ::Rack::Builder.new do
+          use Rack::NotFound
           use Rack::PrettyURLs
           run base_app
         end
