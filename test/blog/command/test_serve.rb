@@ -8,7 +8,6 @@ module Blog
       def setup
         @tmpdir = Pathname.new(Dir.mktmpdir)
         @source = Pathname.new(Dir.mktmpdir)
-        @command = Serve.new(source: @source)
       end
 
       def teardown
@@ -18,8 +17,9 @@ module Blog
 
       def test_run
         Dir.chdir @tmpdir do
-          @command.stub :start_server, nil do
-            @command.run
+          command = Serve.new(source: @source)
+          command.stub :start_server, nil do
+            command.run
           end
 
           public_path = @tmpdir.join('public')
