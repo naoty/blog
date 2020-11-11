@@ -6,12 +6,16 @@ module Blog
     class Serve
       # @param [Pathname] source the source of Posts
       def initialize(source:)
-        @application = Rack::NotFound.new
+        @public_path = prepare_public_path
+        base_app = Rack::NotFound.new
+
+        @rack_app = ::Rack::Builder.new do
+          run base_app
+        end
       end
 
       def run
-        public_path = prepare_public_path
-        copy_static_files(public_path: public_path)
+        copy_static_files(public_path: @public_path)
         start_server
       end
 
@@ -31,7 +35,7 @@ module Blog
       end
 
       def start_server
-        ::Rack::Handler::WEBrick.run(@application)
+        ::Rack::Handler::WEBrick.run(@rack_app)
       end
     end
   end
