@@ -7,7 +7,7 @@ module Blog
       # @param [Pathname] source the source of Posts
       def initialize(source:)
         @public_path = prepare_public_path
-        base_app = Rack::NotFound.new
+        base_app = ::Rack::Files.new(@public_path)
 
         @rack_app = ::Rack::Builder.new do
           run base_app
