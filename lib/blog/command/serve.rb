@@ -11,6 +11,7 @@ module Blog
 
         @rack_app = ::Rack::Builder.new do
           use Rack::NotFound
+          use Rack::PostsBuild, path: '/', source: source
           use Rack::PrettyURLs
           run base_app
         end
