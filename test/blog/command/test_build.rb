@@ -8,6 +8,8 @@ module Blog
     class TestBuild < Minitest::Test
       POST_NUMBER = 2
 
+      attr_reader :tmpdir, :command
+
       def setup
         @tmpdir = Pathname.new(Dir.mktmpdir)
         source = setup_source(root: @tmpdir)
@@ -15,8 +17,18 @@ module Blog
       end
 
       def teardown
-        @tmpdir.rmtree
+        tmpdir.rmtree
       end
+
+      def test_run
+        Dir.chdir tmpdir do
+          command.run
+          assert_building_index
+          1.upto(POST_NUMBER) { |id| assert_building_post(id: id) }
+        end
+      end
+
+      private
 
       # @param [Pathname] root the root path which includes source path
       # @return [Pathname] source path
@@ -54,22 +66,38 @@ module Blog
         TEXT
       end
 
-      def test_run
-        Dir.chdir @tmpdir do
-          @command.run
+      def assert_building_index
+        assert public_path.exist?
+        assert index_path.exist?
+        assert static_file_path.exist?
 
-          public_path = @tmpdir.join('public')
-          assert public_path.exist?
+        document = Nokogiri::HTML(index_path.read)
+        assert_equal POST_NUMBER, document.search('li').length
+      end
 
-          index_path = public_path.join('index.html')
-          assert index_path.exist?
+      def assert_building_post(id:)
+        assert post_dir(id: id).exist?
+        assert post_path(id: id).exist?
+      end
 
-          document = Nokogiri::HTML(index_path.read)
-          assert_equal POST_NUMBER, document.search('li').length
+      def public_path
+        @public_path ||= tmpdir.join('public')
+      end
 
-          static_file_path = public_path.join('404.html')
-          assert static_file_path.exist?
-        end
+      def index_path
+        @index_path ||= public_path.join('index.html')
+      end
+
+      def static_file_path
+        @static_file_path ||= public_path.join('404.html')
+      end
+
+      def post_dir(id:)
+        public_path.join(id.to_s)
+      end
+
+      def post_path(id:)
+        post_dir(id: id).join('index.html')
       end
     end
   end

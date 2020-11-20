@@ -18,11 +18,27 @@ module Blog
         copy_static_files(public_path: public_path)
 
         posts = post_repository.all_posts_sorted_by_time
+        build_index(posts: posts, public_path: public_path)
+        build_posts(posts: posts, public_path: public_path)
+      end
+
+      private
+
+      def build_index(posts:, public_path:)
         html = posts_renderer.render(posts)
         public_path.join('index.html').open('wb') { |file| file.puts html }
       end
 
-      private
+      def build_posts(posts:, public_path:)
+        posts.each { |post| build_post(post: post, public_path: public_path) }
+      end
+
+      def build_post(post:, public_path:)
+        html = post_renderer.render(post)
+        post_path = public_path.join(post.id.to_s)
+        post_path.mkdir unless post_path.exist?
+        post_path.join('index.html').open('wb') { |file| file.puts html }
+      end
 
       def post_repository
         @post_repository ||= PostRepository.new(source: source)
@@ -30,6 +46,10 @@ module Blog
 
       def posts_renderer
         @posts_renderer ||= PostsRenderer.new
+      end
+
+      def post_renderer
+        @post_renderer ||= PostRenderer.new
       end
 
       # @return [Pathname] public path that built files are output
