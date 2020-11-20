@@ -1,11 +1,10 @@
 require 'erb'
-require 'pathname'
 
 module Blog
   # Renderer for index page of posts
   class PostsRenderer
     def initialize
-      template = Pathname.pwd.join('template', 'posts.html.erb')
+      template = Blog.root_path.join('template', 'index.html.erb')
       @erb = ERB.new(template.read, trim_mode: '-')
     end
 
