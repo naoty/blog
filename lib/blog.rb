@@ -20,4 +20,10 @@ module Blog
   def self.root_path
     @root_path ||= Pathname.new(__dir__).parent
   end
+
+  # Return public path
+  # @return [Pathname] the path to public directory
+  def self.public_path
+    @public_path ||= Pathname.pwd.join('public')
+  end
 end
