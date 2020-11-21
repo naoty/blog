@@ -5,15 +5,11 @@ require 'time'
 module Blog
   # An object that decodes Posts from file system.
   class PostRepository
+    attr_reader :source
+
     # @param [Pathname] source the directory Post data are persisted
     def initialize(source:)
       @source = source
-      @pipeline = ::HTML::Pipeline.new(
-        [
-          Blog::HTML::Pipeline::FrontMatterFilter,
-          ::HTML::Pipeline::MarkdownFilter
-        ]
-      )
     end
 
     # Get a Post with passed ID.
@@ -21,7 +17,7 @@ module Blog
     # @raise [PostNotFound] raised when a Post with passed ID is not found
     # @return [Post] a Post with passed ID
     def find(id)
-      post_dir = @source.children.find { |child| child.basename.to_s == id.to_s }
+      post_dir = source.children.find { |child| child.basename.to_s == id.to_s }
       raise PostNotFound.new(id: id) if post_dir.nil?
 
       path = post_dir.join('post.md')
@@ -30,7 +26,7 @@ module Blog
 
     # Get all posts from source and sort them by time attribute
     def all_posts_sorted_by_time
-      @source
+      source
         .children
         .map { |child| child.join('post.md') }
         .filter(&:exist?)
@@ -41,10 +37,19 @@ module Blog
 
     private
 
+    def pipeline
+      @pipeline ||= ::HTML::Pipeline.new(
+        [
+          Blog::HTML::Pipeline::FrontMatterFilter,
+          ::HTML::Pipeline::MarkdownFilter
+        ]
+      )
+    end
+
     # @param [Pathname] path path to post file includeing text representation
     # @return [Post, nil] a Post decoded from text
     def post_from(path)
-      result = @pipeline.call(path.read)
+      result = pipeline.call(path.read)
       time = time_from(result)
       id = path.dirname.basename.to_s.to_i
 
