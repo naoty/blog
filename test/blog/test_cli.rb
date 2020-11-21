@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'blog/cli'
 
 module Blog
   class TestCLI < Minitest::Test
