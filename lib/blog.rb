@@ -11,6 +11,10 @@ module Blog
   autoload :PostsRenderer, 'blog/posts_renderer'
   autoload :Rack, 'blog/rack'
 
+  [
+    :PostNotFound
+  ].each { |klass| autoload klass, 'blog/errors' }
+
   # Return root path of this repository
   # @return [Pathname] the root path of this repository
   def self.root_path

@@ -16,6 +16,18 @@ module Blog
       )
     end
 
+    # Get a Post with passed ID.
+    # @param [Integer, String] id The ID of a Post
+    # @raise [PostNotFound] raised when a Post with passed ID is not found
+    # @return [Post] a Post with passed ID
+    def find(id)
+      post_dir = @source.children.find { |child| child.basename.to_s == id.to_s }
+      raise PostNotFound.new(id: id) if post_dir.nil?
+
+      path = post_dir.join('post.md')
+      post_from(path)
+    end
+
     # Get all posts from source and sort them by time attribute
     def all_posts_sorted_by_time
       @source

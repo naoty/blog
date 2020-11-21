@@ -13,6 +13,16 @@ module Blog
       @source.rmtree
     end
 
+    def test_find_nothing
+      assert_raises(PostNotFound) { @repository.find(1) }
+    end
+
+    def test_find_post
+      setup_source(post_number: 1)
+      post = Post.new(id: 1, title: '', time: Time.new(2020, 1, 1), tags: [], body: '')
+      @repository.stub(:post_from, post) { @repository.find(1) }
+    end
+
     def test_all_posts_sorted_by_time
       setup_source(post_number: 2)
 
