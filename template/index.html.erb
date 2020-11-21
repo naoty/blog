@@ -9,12 +9,15 @@
   </head>
   <body>
     <main>
-      <h1>Posts</h1>
+      <h1 class="title">Posts</h1>
       <ul>
       <%- posts.each do |post| -%>
-        <li>
-          <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d %H:%M') %></time>
+        <li class="list-item">
+          <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d') %></time>
           <a href="/<%= post.id %>/"><%= post.title %></a>
+        <%- post.tags.each do |tag| -%>
+          <a href="#">#<%= tag %></a>
+        <%- end -%>
         </li>
       <%- end -%>
       </ul>
