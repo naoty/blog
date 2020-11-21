@@ -11,7 +11,7 @@ module Blog
 
       def test_call_with_200_response
         app = NotFound.new(->(env) { [200, env, '200 OK'] })
-        status, _, _ = app.call(request)
+        status, = app.call(request)
         assert_equal status, 200
       end
 

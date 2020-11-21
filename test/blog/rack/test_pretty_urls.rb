@@ -11,13 +11,13 @@ module Blog
 
       def test_call_with_trailing_slash
         request = ::Rack::MockRequest.env_for('/')
-        _, env, _ = app.call(request)
+        _, env, = app.call(request)
         assert_equal env[::Rack::PATH_INFO], '/index.html'
       end
 
       def test_call_without_trailing_slash
         request = ::Rack::MockRequest.env_for('/test')
-        _, env, _ = app.call(request)
+        _, env, = app.call(request)
         assert_equal env[::Rack::PATH_INFO], '/test'
       end
     end
