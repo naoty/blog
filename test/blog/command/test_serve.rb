@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'pathname'
-require 'tmpdir'
 
 module Blog
   module Command

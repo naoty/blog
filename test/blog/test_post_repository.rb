@@ -1,6 +1,4 @@
 require 'test_helper'
-require 'blog/post_repository'
-require 'tmpdir'
 
 module Blog
   class TestPostRepository < Minitest::Test

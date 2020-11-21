@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'tmpdir'
 require 'nokogiri'
 require 'fileutils'
 
