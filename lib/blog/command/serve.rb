@@ -29,17 +29,17 @@ module Blog
       end
 
       def rack_app
-        @rack_app ||= ::Rack::Builder.new do
-          use Rack::NotFound
-          use Rack::PostsBuild, path: '/', source: source
-          use Rack::PostBuild, path: %r{/(?<id>\d+)/}, source: source
-          use Rack::PrettyURLs
-          run base_app
-        end
-      end
+        @rack_app ||= begin
+          source = @source
 
-      def base_app
-        @base_app ||= ::Rack::Files.new(Blog.public_path)
+          ::Rack::Builder.new do
+            use Rack::NotFound
+            use Rack::PostsBuild, path: '/', source: source
+            use Rack::PostBuild, path: %r{/(?<id>\d+)/}, source: source
+            use Rack::PrettyURLs
+            run ::Rack::Files.new(Blog.public_path)
+          end
+        end
       end
     end
   end
