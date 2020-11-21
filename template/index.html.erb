@@ -11,7 +11,10 @@
       <h1>Posts</h1>
       <ul>
       <%- posts.each do |post| -%>
-        <li><%= post.title %></li>
+        <li>
+          <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d %H:%M') %></time>
+          <a href="/<%= post.id %>/"><%= post.title %></a>
+        </li>
       <%- end -%>
       </ul>
     </main>
