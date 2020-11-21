@@ -3,5 +3,52 @@
 }
 
 html {
+  color: #333;
   font-size: 100%;
+  font-family: Verdana, "Noto Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  background-color: #ddd;
+}
+
+main {
+  width: 32rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+main > *:first-child {
+  margin-top: 0;
+}
+
+main > *:last-child {
+  margin-bottom: 0;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 2rem 0 1rem 0;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 2rem 0 1rem 0;
+}
+
+hr,
+p,
+pre,
+ol,
+table,
+ul {
+  margin: 1rem 0;
+}
+
+ol,
+ul {
+  padding-left: 1.5rem;
 }
