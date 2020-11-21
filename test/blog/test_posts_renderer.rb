@@ -3,6 +3,8 @@ require 'nokogiri'
 
 module Blog
   class TestPostsRenderer < Minitest::Test
+    attr_reader :renderer
+
     def setup
       @renderer = PostsRenderer.new
     end
@@ -12,7 +14,7 @@ module Blog
         Post.new(id: 1, title: 'dummy', time: Time.new(2020, 1, 1), tags: [], body: ''),
         Post.new(id: 2, title: 'dummy', time: Time.new(2020, 1, 2), tags: [], body: '')
       ]
-      html = @renderer.render(posts)
+      html = renderer.render(posts)
       document = Nokogiri::HTML(html)
 
       assert_equal 2, document.search('li').length
