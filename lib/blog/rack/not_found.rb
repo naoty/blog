@@ -5,7 +5,7 @@ module Blog
       def initialize(app)
         @app = app
 
-        path = Pathname.pwd.join('public', '404.html')
+        path = Blog.public_path.join('404.html')
         @content = path.read
         @content_length = @content.bytesize.to_s
       end

@@ -23,7 +23,7 @@ module Blog
       def build_page
         posts = post_repository.all_posts_sorted_by_time
         html = posts_renderer.render(posts)
-        Blog.root_path.join('public', 'index.html').open('wb') { |file| file.puts(html) }
+        Blog.public_path.join('index.html').open('wb') { |file| file.puts(html) }
       end
 
       def post_repository

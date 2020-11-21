@@ -6,8 +6,7 @@ module Blog
     class Serve
       # @param [Pathname] source the source of Posts
       def initialize(source:)
-        @public_path = prepare_public_path
-        base_app = ::Rack::Files.new(@public_path)
+        base_app = ::Rack::Files.new(Blog.public_path)
 
         @rack_app = ::Rack::Builder.new do
           use Rack::NotFound
@@ -19,23 +18,16 @@ module Blog
       end
 
       def run
-        copy_static_files(public_path: @public_path)
+        copy_static_files
         start_server
       end
 
       private
 
-      # @return [Pathname] path to public
-      def prepare_public_path
-        public_path = Pathname.pwd.join('public')
-        public_path.mkdir unless public_path.exist?
-        public_path
-      end
-
       # @param [Pathname] public_path path to public
-      def copy_static_files(public_path:)
+      def copy_static_files
         static_path = Blog.root_path.join('static/.')
-        FileUtils.cp_r(static_path, public_path)
+        FileUtils.cp_r(static_path, Blog.public_path)
       end
 
       def start_server

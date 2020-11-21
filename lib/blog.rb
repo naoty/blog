@@ -21,9 +21,11 @@ module Blog
     @root_path ||= Pathname.new(__dir__).parent
   end
 
-  # Return public path
+  # Prepare and return public path
   # @return [Pathname] the path to public directory
   def self.public_path
-    @public_path ||= Pathname.pwd.join('public')
+    path = Pathname.pwd.join('public')
+    path.mkdir unless path.exist?
+    path
   end
 end
