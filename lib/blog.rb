@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'erb'
 require 'pathname'
 
 # Top-level namespace
