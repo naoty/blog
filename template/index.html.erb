@@ -9,8 +9,8 @@
   </head>
   <body>
     <main>
-      <h1 class="title">Posts</h1>
-      <ul>
+      <h1 class="title mt-0">Posts</h1>
+      <ul class="mb-0">
       <%- posts.each do |post| -%>
         <li class="list-item">
           <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d') %></time>
