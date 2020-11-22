@@ -53,10 +53,40 @@ ul {
   padding-left: 1.5rem;
 }
 
+pre,
+code {
+  font-family: Menlo, monospace;
+}
+
+pre {
+  padding: 1em;
+  font-size: 0.8rem;
+  background-color: #2d2d2d;
+  overflow-x: auto;
+}
+
+pre > code {
+  color: #ccc;
+}
+
 .title {
   border-bottom: 1px solid #000;
 }
 
 .list-item {
   font-size: 0.8rem;
+}
+
+.metadata {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 0.8rem;
+  font-family: Menlo, monospace;
+}
+
+.body h1 {
+  font-size: 18px;
+}
+
+.body h2 {
+  font-size: 16px;
 }

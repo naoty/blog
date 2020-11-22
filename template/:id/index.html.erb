@@ -9,7 +9,20 @@
   </head>
   <body>
     <main>
-      <%= post.body %>
+      <article>
+        <header>
+          <h1 class="title"><%= post.title %></h1>
+          <p class="metadata">
+            <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d %H:%M') %></time>
+          <%- post.tags.each do |tag| -%>
+            <a href="#">#<%= tag %></a>
+          <%- end -%>
+          </p>
+        </header>
+        <section class="body">
+          <%= post.body %>
+        </section>
+      </article>
     </main>
   </body>
 </html>
