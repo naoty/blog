@@ -28,7 +28,8 @@ module Blog
       def build_post(id:)
         post = post_repository.find(id)
         html = post_renderer.render(post)
-        post_path(id: id).open('wb') { |file| file.puts html }
+        path = prepare_post_path(id: id)
+        path.open('wb') { |file| file.puts html }
       end
 
       def post_repository
@@ -39,8 +40,10 @@ module Blog
         @post_renderer ||= PostRenderer.new
       end
 
-      def post_path(id:)
-        Blog.public_path.join(id, 'index.html')
+      def prepare_post_path(id:)
+        dir = Blog.public_path.join(id)
+        dir.mkdir unless dir.exist?
+        dir.join('index.html')
       end
     end
   end
