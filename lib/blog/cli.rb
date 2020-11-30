@@ -54,9 +54,9 @@ module Blog
     def command
       @command ||= case @arguments.first
                    when 'build'
-                     Command::Build.new(source: source)
+                     Build.new(source: source)
                    when 'serve'
-                     Command::Serve.new(source: source)
+                     Serve.new(source: source)
                    end
     end
   end

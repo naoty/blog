@@ -23,7 +23,7 @@ module Blog
       mock.expect(:run, nil)
       mock.expect(:nil?, false)
 
-      Command::Build.stub(:new, mock) do
+      Build.stub(:new, mock) do
         CLI.new(arguments: %w[build source]).run
       end
 
@@ -35,7 +35,7 @@ module Blog
       mock.expect(:run, nil)
       mock.expect(:nil?, false)
 
-      Command::Serve.stub(:new, mock) do
+      Serve.stub(:new, mock) do
         CLI.new(arguments: %w[serve source]).run
       end
 

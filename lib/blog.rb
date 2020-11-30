@@ -4,13 +4,14 @@ require 'pathname'
 
 # Top-level namespace
 module Blog
+  autoload :Build, 'blog/build'
   autoload :CLI, 'blog/cli'
-  autoload :Command, 'blog/command'
   autoload :PostRenderer, 'blog/post_renderer'
   autoload :PostRepository, 'blog/post_repository'
   autoload :Post, 'blog/post'
   autoload :PostsRenderer, 'blog/posts_renderer'
   autoload :Rack, 'blog/rack'
+  autoload :Serve, 'blog/serve'
 
   [
     :PostNotFound
