@@ -3,14 +3,7 @@ require 'pathname'
 
 module Blog
   # +blog build+ command
-  class Build
-    attr_reader :source
-
-    # @param [Pathname] source the directory Post data are persisted
-    def initialize(source:)
-      @source = source
-    end
-
+  class Build < Command
     # Run +blog build+ command
     def run
       posts = post_repository.all_posts_sorted_by_time
@@ -47,11 +40,6 @@ module Blog
 
     def post_renderer
       @post_renderer ||= PostRenderer.new
-    end
-
-    # @param [Pathname] public_path public path where static files are copied
-    def copy_static_files
-      FileUtils.cp_r(Blog.root_path.join('static/.'), Blog.public_path)
     end
   end
 end
