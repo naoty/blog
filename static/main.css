@@ -99,6 +99,10 @@ pre > code {
   font-size: 16px;
 }
 
+.body img {
+  width: 100%;
+}
+
 .footer-links {
   text-align: center;
 }
