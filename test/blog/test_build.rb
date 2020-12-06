@@ -47,6 +47,9 @@ module Blog
       post_path.open('wb') do |file|
         file.puts dummy_post_content(id: id)
       end
+
+      asset_path = Blog.root_path.join('test', 'asset', 'image.png')
+      FileUtils.cp(asset_path, post_dir.join('image.png'))
     end
 
     # @param [Integer] id the ID of post
@@ -76,6 +79,7 @@ module Blog
     def assert_building_post(id:)
       assert post_dir(id: id).exist?
       assert post_path(id: id).exist?
+      assert post_asset_path(id: id).exist?
     end
 
     def public_path
@@ -96,6 +100,10 @@ module Blog
 
     def post_path(id:)
       post_dir(id: id).join('index.html')
+    end
+
+    def post_asset_path(id:)
+      post_dir(id: id).join('image.png')
     end
   end
 end

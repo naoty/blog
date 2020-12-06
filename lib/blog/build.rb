@@ -9,6 +9,7 @@ module Blog
       posts = post_repository.all_posts_sorted_by_time
       build_index(posts)
       build_posts(posts)
+      copy_post_assets
       copy_static_files
     end
 

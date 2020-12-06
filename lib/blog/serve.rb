@@ -5,6 +5,7 @@ module Blog
   class Serve < Command
     def run
       copy_static_files
+      copy_post_assets
       start_server
     end
 
