@@ -5,6 +5,7 @@ require 'fileutils'
 module Blog
   class TestBuild < Minitest::Test
     POST_NUMBER = 2
+    TAG = 'ruby'
 
     attr_reader :tmpdir, :command
 
@@ -23,6 +24,7 @@ module Blog
         command.run
         assert_building_posts_page
         1.upto(POST_NUMBER) { |id| assert_building_post_page(id: id) }
+        assert_building_tag_page(tag: TAG)
       end
     end
 
@@ -59,7 +61,7 @@ module Blog
         ---
         title: dummy #{id}
         time: #{time.strftime('%Y-%m-%d %H:%M')}
-        tags: ['ruby']
+        tags: ['#{TAG}']
         ---
 
         # header
@@ -80,6 +82,11 @@ module Blog
       assert post_dir(id: id).exist?
       assert post_path(id: id).exist?
       assert post_asset_path(id: id).exist?
+    end
+
+    def assert_building_tag_page(tag:)
+      assert tag_dir(tag: tag).exist?
+      assert tag_path(tag: tag).exist?
     end
 
     def public_path
@@ -104,6 +111,14 @@ module Blog
 
     def post_asset_path(id:)
       post_dir(id: id).join('image.png')
+    end
+
+    def tag_dir(tag:)
+      public_path.join(tag)
+    end
+
+    def tag_path(tag:)
+      tag_dir(tag: tag).join('index.html')
     end
   end
 end

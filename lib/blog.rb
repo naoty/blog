@@ -13,6 +13,7 @@ module Blog
   autoload :PostsRenderer, 'blog/posts_renderer'
   autoload :Rack, 'blog/rack'
   autoload :Serve, 'blog/serve'
+  autoload :TagRenderer, 'blog/tag_renderer'
 
   [
     :PostNotFound

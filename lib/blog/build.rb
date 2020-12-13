@@ -9,6 +9,7 @@ module Blog
       posts = post_repository.all_posts_sorted_by_time
       build_posts_page(posts)
       build_post_pages(posts)
+      build_tag_pages(posts)
       copy_post_assets
       copy_static_files
     end
@@ -31,6 +32,27 @@ module Blog
       post_path.join('index.html').open('wb') { |file| file.puts html }
     end
 
+    def build_tag_pages(posts)
+      posts_by_tag = {}
+      posts.each do |post|
+        post.tags.each do |tag|
+          posts_by_tag[tag] ||= []
+          posts_by_tag[tag] << post
+        end
+      end
+
+      posts_by_tag.each do |tag, tagged_posts|
+        build_tag_page(tag: tag, tagged_posts: tagged_posts)
+      end
+    end
+
+    def build_tag_page(tag:, tagged_posts:)
+      html = tag_renderer.render(tag: tag, posts: tagged_posts)
+      tag_path = Blog.public_path.join(tag)
+      tag_path.mkdir unless tag_path.exist?
+      tag_path.join('index.html').open('wb') { |file| file.puts html }
+    end
+
     def post_repository
       @post_repository ||= PostRepository.new(source: source)
     end
@@ -41,6 +63,10 @@ module Blog
 
     def post_renderer
       @post_renderer ||= PostRenderer.new
+    end
+
+    def tag_renderer
+      @tag_renderer ||= TagRenderer.new
     end
   end
 end

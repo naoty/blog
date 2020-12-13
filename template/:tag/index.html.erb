@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog.naoty.dev</title>
+    <link href="/normalize.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+      <h1 class="title mt-0">#<%= tag %></h1>
+      <nav>
+        <ul class="mb-0">
+        <%- posts.each do |post| -%>
+          <li class="list-item">
+            <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d') %></time>
+            <a href="/<%= post.id %>/"><%= post.title %></a>
+          <%- post.tags.each do |tag| -%>
+            <a href="/<%= tag %>/">#<%= tag %></a>
+          <%- end -%>
+          </li>
+        <%- end -%>
+        </ul>
+      </nav>
+      <footer>
+        <nav>
+          <ul class="footer-links mb-0">
+            <li><a href="/">Posts</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>
