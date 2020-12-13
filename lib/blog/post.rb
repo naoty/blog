@@ -15,5 +15,9 @@ module Blog
       @tags = tags
       @body = body
     end
+
+    def inspect
+      "#<Blog::Post @id=#{id}, @title=#{title}>"
+    end
   end
 end
