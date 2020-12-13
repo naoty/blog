@@ -22,6 +22,7 @@ module Blog
         ::Rack::Builder.new do
           use Rack::NotFound
           use Rack::PostsBuild, path: '/', source: source
+          use Rack::TagBuild, path: %r{/(?<tag>\S+)/}, source: source
           use Rack::PostBuild, path: %r{/(?<id>\d+)/}, source: source
           use Rack::PrettyURLs
           run ::Rack::Files.new(Blog.public_path)
