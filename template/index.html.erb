@@ -17,7 +17,7 @@
             <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d') %></time>
             <a href="/<%= post.id %>/"><%= post.title %></a>
           <%- post.tags.each do |tag| -%>
-            <a href="#">#<%= tag %></a>
+            <a href="/<%= tag %>/">#<%= tag %></a>
           <%- end -%>
           </li>
         <%- end -%>

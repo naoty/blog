@@ -15,7 +15,7 @@
           <p class="metadata">
             <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d %H:%M') %></time>
           <%- post.tags.each do |tag| -%>
-            <a href="#">#<%= tag %></a>
+            <a href="/<%= tag %>/">#<%= tag %></a>
           <%- end -%>
           </p>
         </header>
