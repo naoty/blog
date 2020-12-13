@@ -7,24 +7,24 @@ module Blog
     # Run +blog build+ command
     def run
       posts = post_repository.all_posts_sorted_by_time
-      build_index(posts)
-      build_posts(posts)
+      build_posts_page(posts)
+      build_post_pages(posts)
       copy_post_assets
       copy_static_files
     end
 
     private
 
-    def build_index(posts)
+    def build_posts_page(posts)
       html = posts_renderer.render(posts)
       Blog.public_path.join('index.html').open('wb') { |file| file.puts html }
     end
 
-    def build_posts(posts)
-      posts.each { |post| build_post(post) }
+    def build_post_pages(posts)
+      posts.each { |post| build_post_page(post) }
     end
 
-    def build_post(post)
+    def build_post_page(post)
       html = post_renderer.render(post)
       post_path = Blog.public_path.join(post.id.to_s)
       post_path.mkdir unless post_path.exist?

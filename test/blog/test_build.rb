@@ -21,8 +21,8 @@ module Blog
     def test_run
       Dir.chdir tmpdir do
         command.run
-        assert_building_index
-        1.upto(POST_NUMBER) { |id| assert_building_post(id: id) }
+        assert_building_posts_page
+        1.upto(POST_NUMBER) { |id| assert_building_post_page(id: id) }
       end
     end
 
@@ -67,7 +67,7 @@ module Blog
       TEXT
     end
 
-    def assert_building_index
+    def assert_building_posts_page
       assert public_path.exist?
       assert index_path.exist?
       assert static_file_path.exist?
@@ -76,7 +76,7 @@ module Blog
       assert_equal POST_NUMBER, document.search('li').length
     end
 
-    def assert_building_post(id:)
+    def assert_building_post_page(id:)
       assert post_dir(id: id).exist?
       assert post_path(id: id).exist?
       assert post_asset_path(id: id).exist?
