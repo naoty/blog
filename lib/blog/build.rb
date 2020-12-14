@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'pathname'
+require 'rss'
 
 module Blog
   # +blog build+ command
@@ -10,6 +11,8 @@ module Blog
       build_posts_page(posts)
       build_post_pages(posts)
       build_tag_pages(posts)
+      build_feed(posts)
+
       copy_post_assets
       copy_static_files
     end
@@ -51,6 +54,34 @@ module Blog
       tag_path = Blog.public_path.join(tag)
       tag_path.mkdir unless tag_path.exist?
       tag_path.join('index.html').open('wb') { |file| file.puts html }
+    end
+
+    def build_feed(posts)
+      feed = generate_feed(posts)
+      feed_path = Blog.public_path.join('feed.xml')
+      feed_path.open('wb') { |file| file.puts feed }
+    end
+
+    def generate_feed(posts)
+      feed = RSS::Maker.make('atom') do |maker|
+        maker.channel.id = 'https://blog.naoty.dev'
+        maker.channel.title = 'blog.naoty.dev'
+        maker.channel.link = 'https://blog.naoty.dev'
+        maker.channel.author = 'Naoto Kaneko'
+        # TODO: blog.naoty.devの公開日を設定する
+        maker.channel.updated = Time.now
+
+        maker.items.do_sort = true
+        posts.each do |post|
+          maker.items.new_item do |item|
+            item.id = "https://blog.naoty.dev/#{post.id}/"
+            item.link = "https://blog.naoty.dev/#{post.id}/"
+            item.title = post.title
+            item.updated = post.time
+          end
+        end
+      end
+      feed.to_s
     end
 
     def post_repository

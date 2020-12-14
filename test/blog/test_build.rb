@@ -25,6 +25,7 @@ module Blog
         assert_building_posts_page
         1.upto(POST_NUMBER) { |id| assert_building_post_page(id: id) }
         assert_building_tag_page(tag: TAG)
+        assert_building_feed
       end
     end
 
@@ -87,6 +88,10 @@ module Blog
     def assert_building_tag_page(tag:)
       assert tag_dir(tag: tag).exist?
       assert tag_path(tag: tag).exist?
+    end
+
+    def assert_building_feed
+      assert public_path.join('feed.xml').exist?
     end
 
     def public_path
