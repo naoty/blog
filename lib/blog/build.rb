@@ -1,5 +1,3 @@
-require 'fileutils'
-require 'pathname'
 require 'rss'
 
 module Blog
