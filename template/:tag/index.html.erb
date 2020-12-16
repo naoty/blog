@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blog.naoty.dev</title>
+    <title>blog.naoty.dev #<%= tag %></title>
     <link href="/normalize.css" rel="stylesheet">
     <link href="/main.css" rel="stylesheet">
     <link href="/favicon.png" rel="shortcut icon" type="image/png">
+    <meta property="og:title" content="blog.naoty.dev #<%= tag %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blog.naoty.dev/<%= tag %>/">
+    <meta property="og:image" content="https://blog.naoty.dev/icon.png">
   </head>
   <body>
     <main>
