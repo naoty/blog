@@ -1,0 +1,20 @@
+name: Publish Docker image
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    name: Publish Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build and Push image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: naoty/blog/blog
+          tag_with_ref: true
