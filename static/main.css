@@ -14,10 +14,7 @@ body {
 }
 
 main {
-  width: 32rem;
-  margin: 2rem auto;
   padding: 1rem;
-  border: 1px solid #000;
   background-color: #fff;
 }
 
@@ -110,4 +107,18 @@ pre > code {
 ul.footer-links {
   padding: 0;
   list-style: none;
+}
+
+@media (max-width: 32rem) {
+  main {
+    min-height: 100vh;
+  }
+}
+
+@media (min-width: 32rem) {
+  main {
+    width: 32rem;
+    margin: 2rem auto;
+    border: 1px solid #000;
+  }
 }
