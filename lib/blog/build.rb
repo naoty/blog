@@ -19,7 +19,9 @@ module Blog
 
     def build_posts_page(posts)
       html = posts_renderer.render(posts)
-      Blog.public_path.join('index.html').open('wb') { |file| file.puts html }
+      path = Blog.public_path.join('index.html')
+      path.open('wb') { |file| file.puts html }
+      puts "build: #{path}"
     end
 
     def build_post_pages(posts)
@@ -30,7 +32,10 @@ module Blog
       html = post_renderer.render(post)
       post_path = Blog.public_path.join(post.id.to_s)
       post_path.mkdir unless post_path.exist?
-      post_path.join('index.html').open('wb') { |file| file.puts html }
+
+      path = post_path.join('index.html')
+      path.open('wb') { |file| file.puts html }
+      puts "build: #{path}"
     end
 
     def build_tag_pages(posts)
@@ -51,13 +56,17 @@ module Blog
       html = tag_renderer.render(tag: tag, posts: tagged_posts)
       tag_path = Blog.public_path.join(tag)
       tag_path.mkdir unless tag_path.exist?
-      tag_path.join('index.html').open('wb') { |file| file.puts html }
+
+      path = tag_path.join('index.html')
+      path.open('wb') { |file| file.puts html }
+      puts "build: #{path}"
     end
 
     def build_feed(posts)
       feed = generate_feed(posts)
-      feed_path = Blog.public_path.join('feed.xml')
-      feed_path.open('wb') { |file| file.puts feed }
+      path = Blog.public_path.join('feed.xml')
+      path.open('wb') { |file| file.puts feed }
+      puts "build: #{path}"
     end
 
     def generate_feed(posts)
