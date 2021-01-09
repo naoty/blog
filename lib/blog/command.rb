@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Blog
   class Command
     attr_reader :source
@@ -29,6 +31,7 @@ module Blog
     def copy_post_asset(path:)
       relative_path = path.relative_path_from(source)
       target_path = Blog.public_path.join(relative_path)
+      target_path.parent.mkpath
       FileUtils.cp(path, target_path)
     end
   end
