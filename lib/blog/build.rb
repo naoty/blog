@@ -87,6 +87,8 @@ module Blog
             item.summary = post.body
           end
         end
+
+        maker.image.url = 'https://blog.naoty.dev/icon.png'
       end
       feed.to_s
     end
