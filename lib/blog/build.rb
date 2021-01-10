@@ -71,7 +71,7 @@ module Blog
 
     def generate_feed(posts)
       feed = RSS::Maker.make('atom') do |maker|
-        maker.channel.id = 'https://blog.naoty.dev'
+        maker.channel.id = 'https://blog.naoty.dev/'
         maker.channel.title = 'blog.naoty.dev'
         maker.channel.link = 'https://blog.naoty.dev'
         maker.channel.author = 'Naoto Kaneko'
