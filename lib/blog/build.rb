@@ -84,6 +84,7 @@ module Blog
             item.link = "https://blog.naoty.dev/#{post.id}/"
             item.title = post.title
             item.updated = post.time
+            item.summary = post.body
           end
         end
       end
