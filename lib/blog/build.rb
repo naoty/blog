@@ -75,8 +75,7 @@ module Blog
         maker.channel.title = 'blog.naoty.dev'
         maker.channel.link = 'https://blog.naoty.dev'
         maker.channel.author = 'Naoto Kaneko'
-        # TODO: blog.naoty.devの公開日を設定する
-        maker.channel.updated = Time.now
+        maker.channel.updated = Time.new(2021, 1, 9) # when blog.naoty.dev is launched
 
         maker.items.do_sort = true
         posts.each do |post|
