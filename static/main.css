@@ -56,6 +56,10 @@ li > ul {
   margin-bottom: 0;
 }
 
+a {
+  word-break: break-all;
+}
+
 pre,
 code {
   font-family: Menlo, monospace;
