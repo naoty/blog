@@ -50,6 +50,12 @@ ul {
   padding-left: 1.5rem;
 }
 
+li > ol,
+li > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 pre,
 code {
   font-family: Menlo, monospace;
