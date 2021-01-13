@@ -6,7 +6,7 @@ html {
   color: #333;
   font-size: 100%;
   font-family: Verdana, "Noto Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  line-height: 1.5;
+  line-height: 1.75;
 }
 
 body {
@@ -119,15 +119,15 @@ ul.footer-links {
   list-style: none;
 }
 
-@media (max-width: 32rem) {
+@media (max-width: 36rem) {
   main {
     min-height: 100vh;
   }
 }
 
-@media (min-width: 32rem) {
+@media (min-width: 36rem) {
   main {
-    width: 32rem;
+    width: 36rem;
     margin: 2rem auto;
     border: 1px solid #000;
   }
