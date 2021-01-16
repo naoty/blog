@@ -51,15 +51,15 @@ module Blog
     end
 
     def test_time_from_string
-      result = { front_matter: { time: '2020-01-01 0:00' } }
-      time = repository.send(:time_from, result)
+      front_matter = { time: '2020-01-01 0:00' }
+      time = repository.send(:time_from, front_matter)
 
       assert_equal Time.new(2020, 1, 1, 0, 0), time
     end
 
     def test_time_from_time
-      result = { front_matter: { time: Time.new(2020, 1, 1, 0, 0) } }
-      time = repository.send(:time_from, result)
+      front_matter = { time: Time.new(2020, 1, 1, 0, 0) }
+      time = repository.send(:time_from, front_matter)
 
       assert_equal Time.new(2020, 1, 1, 0, 0), time
     end

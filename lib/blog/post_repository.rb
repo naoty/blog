@@ -1,6 +1,6 @@
-require 'blog/html/pipeline/front_matter_filter'
 require 'html/pipeline'
 require 'time'
+require 'yaml'
 
 module Blog
   # An object that decodes Posts from file system.
@@ -40,7 +40,6 @@ module Blog
     def pipeline
       @pipeline ||= ::HTML::Pipeline.new(
         [
-          Blog::HTML::Pipeline::FrontMatterFilter,
           ::HTML::Pipeline::MarkdownFilter,
           ::HTML::Pipeline::SyntaxHighlightFilter,
         ]
@@ -50,28 +49,37 @@ module Blog
     # @param [Pathname] path path to post file includeing text representation
     # @return [Post, nil] a Post decoded from text
     def post_from(path)
-      result = pipeline.call(path.read)
-      time = time_from(result)
+      text, front_matter = split_front_matter(path.read)
+      result = pipeline.call(text)
+      time = time_from(front_matter)
       id = path.dirname.basename.to_s.to_i
 
       Post.new(
         id: id,
-        title: result.dig(:front_matter, :title),
+        title: front_matter[:title],
         time: time,
-        tags: result.dig(:front_matter, :tags) || [],
+        tags: front_matter[:tags] || [],
         body: result[:output]
       )
     end
 
-    # @param [Hash] pipeline_result The result of Pipeline#call
+    def split_front_matter(text)
+      parts = text.split("---\n", 3)
+      front_matter = YAML
+        .safe_load(parts[1], permitted_classes: [Time])
+        .transform_keys(&:to_sym)
+      [parts[2], front_matter]
+    end
+
+    # @param [Hash] front_matter The front matter of post
     # @return [Time, nil] Time object fetched from post file
-    def time_from(pipeline_result)
-      time_in_result = pipeline_result.dig(:front_matter, :time)
-      case time_in_result
+    def time_from(front_matter)
+      time_in_front_matter = front_matter[:time]
+      case time_in_front_matter
       when Time
-        time_in_result
+        time_in_front_matter
       when String
-        Time.parse(time_in_result)
+        Time.parse(time_in_front_matter)
       end
     end
   end
