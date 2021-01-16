@@ -41,7 +41,8 @@ module Blog
       @pipeline ||= ::HTML::Pipeline.new(
         [
           Blog::HTML::Pipeline::FrontMatterFilter,
-          ::HTML::Pipeline::MarkdownFilter
+          ::HTML::Pipeline::MarkdownFilter,
+          ::HTML::Pipeline::SyntaxHighlightFilter,
         ]
       )
     end
