@@ -68,7 +68,12 @@ code {
 pre {
   padding: 1em;
   font-size: 0.8rem;
+  background: rgb(46, 52, 64);
   overflow-x: auto;
+}
+
+pre > code {
+  color: #d8dee9;
 }
 
 .mt-0 {

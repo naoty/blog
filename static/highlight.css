@@ -1,4 +1,54 @@
 pre.highlight {
-  background-color: #2d2d2d;
-  color: #ccc;
+  background-color: rgb(46, 52, 64);
+  color: #d8dee9;
+}
+
+pre.highlight > span.nc,
+pre.highlight > span.nl,
+pre.highlight > span.no,
+pre.highlight > span.nx {
+  color: #8fbcbb;
+}
+
+pre.highlight > span.n,
+pre.highlight > span.nd,
+pre.highlight > span.nf,
+pre.highlight > span.nn,
+pre.highlight > span.o {
+  color: #88c0d0;
+}
+
+pre.highlight > span.k,
+pre.highlight > span.kc,
+pre.highlight > span.kd,
+pre.highlight > span.kp,
+pre.highlight > span.kt,
+pre.highlight > span.na,
+pre.highlight > span.nb,
+pre.highlight > span.nt,
+pre.highlight > span.ss {
+  color: #81a1c1;
+}
+
+pre.highlight > span.nv,
+pre.highlight > span.s,
+pre.highlight > span.s1,
+pre.highlight > span.s2 {
+  color: #a3be8c;
+}
+
+pre.highlight > span.m,
+pre.highlight > span.mi,
+pre.highlight > span.mf,
+pre.highlight > span.mo {
+  color: #b48ead;
+}
+
+pre.highlight > span.c,
+pre.highlight > span.c1 {
+  color: #616e88;
+}
+
+pre.highlight > span.se {
+  color: #ebcb8b;
 }
