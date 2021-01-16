@@ -68,12 +68,7 @@ code {
 pre {
   padding: 1em;
   font-size: 0.8rem;
-  background-color: #2d2d2d;
   overflow-x: auto;
-}
-
-pre > code {
-  color: #ccc;
 }
 
 .mt-0 {
