@@ -22,7 +22,8 @@ module Blog
 
     def copy_post_assets
       source
-        .glob('**/*')
+        .glob('*/*')
+        .select { |path| path.parent.basename.to_s.match?(/\d+/) }
         .reject(&:directory?)
         .reject { |path| path.basename.to_s == 'post.md' }
         .each { |path| copy_post_asset(path: path) }
