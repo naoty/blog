@@ -6,6 +6,7 @@ module Blog
     def run
       copy_static_files
       copy_post_assets
+      trap(:INT, method(:handle_sigint))
       start_server
     end
 
@@ -13,6 +14,10 @@ module Blog
 
     def start_server
       ::Rack::Handler::WEBrick.run(rack_app)
+    end
+
+    def handle_sigint(_arg)
+      ::Rack::Handler::WEBrick.shutdown
     end
 
     def rack_app
