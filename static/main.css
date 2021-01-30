@@ -114,6 +114,10 @@ ul.footer-links {
   list-style: none;
 }
 
+.footer-link {
+  display: inline;
+}
+
 @media (max-width: 36rem) {
   main {
     min-height: 100vh;

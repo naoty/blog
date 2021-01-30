@@ -19,7 +19,7 @@
     <main>
       <h1 class="title mt-0">Posts</h1>
       <nav>
-        <ul class="mb-0">
+        <ul>
         <%- posts.each do |post| -%>
           <li class="list-item">
             <time datetime="<%= post.time.strftime('%Y-%m-%dT%H:%M:%S.%3N%z') %>"><%= post.time.strftime('%Y-%m-%d') %></time>
@@ -31,6 +31,13 @@
         <%- end -%>
         </ul>
       </nav>
+      <footer>
+        <nav>
+          <ul class="footer-links mb-0">
+            <li class="footer-link"><a href="https://naoty.dev">Home</a></li>
+          </ul>
+        </nav>
+      </footer>
     </main>
   </body>
 </html>
