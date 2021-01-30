@@ -11,8 +11,8 @@ module Blog
 
     def test_render
       posts = [
-        Post.new(id: 1, title: 'dummy', time: Time.new(2020, 1, 1), tags: [], body: ''),
-        Post.new(id: 2, title: 'dummy', time: Time.new(2020, 1, 2), tags: [], body: '')
+        Post.new(id: 1, title: 'dummy', description: nil, time: Time.new(2020, 1, 1), tags: [], body: ''),
+        Post.new(id: 2, title: 'dummy', description: nil, time: Time.new(2020, 1, 2), tags: [], body: '')
       ]
       html = renderer.render(posts)
       document = Nokogiri::HTML(html)

@@ -19,7 +19,7 @@ module Blog
 
     def test_find_post
       setup_source(post_number: 1)
-      post = Post.new(id: 1, title: '', time: Time.new(2020, 1, 1), tags: [], body: '')
+      post = Post.new(id: 1, title: '', description: nil, time: Time.new(2020, 1, 1), tags: [], body: '')
       repository.stub(:post_from, post) { repository.find(1) }
     end
 
@@ -27,8 +27,8 @@ module Blog
       setup_source(post_number: 2)
 
       posts = [
-        Post.new(id: 1, title: '', time: Time.new(2020, 1, 1), tags: [], body: ''),
-        Post.new(id: 2, title: '', time: Time.new(2020, 1, 2), tags: [], body: '')
+        Post.new(id: 1, title: '', description: nil, time: Time.new(2020, 1, 1), tags: [], body: ''),
+        Post.new(id: 2, title: '', description: nil, time: Time.new(2020, 1, 2), tags: [], body: '')
       ]
 
       repository.stub(:post_from, proc { posts.shift }) do

@@ -57,6 +57,7 @@ module Blog
       Post.new(
         id: id,
         title: front_matter[:title],
+        description: front_matter[:description],
         time: time,
         tags: front_matter[:tags] || [],
         body: result[:output]
