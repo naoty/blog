@@ -94,7 +94,7 @@ module Blog
       return DEFAULT_OG_IMAGE_URL if img.nil?
 
       url = img['src']
-      url = "https://blog.naoty.dev/#{id}/" + url unless url.start_with?('https://')
+      url = "https://blog.naoty.dev/#{id}/" + url unless url.start_with?('http')
       URI::DEFAULT_PARSER.make_regexp.match?(url) ? url : DEFAULT_OG_IMAGE_URL
     end
   end
