@@ -5,6 +5,8 @@ require 'yaml'
 module Blog
   # An object that decodes Posts from file system.
   class PostRepository
+    DEFAULT_OG_IMAGE_URL = -'https://blog.naoty.dev/icon.png'
+
     attr_reader :source
 
     # @param [Pathname] source the directory Post data are persisted
@@ -51,15 +53,15 @@ module Blog
     def post_from(path)
       text, front_matter = split_front_matter(path.read)
       result = pipeline.call(text)
-      time = time_from(front_matter)
       id = path.dirname.basename.to_s.to_i
 
       Post.new(
         id: id,
         title: front_matter[:title],
         description: front_matter[:description],
-        time: time,
+        time: time_from(front_matter),
         tags: front_matter[:tags] || [],
+        og_image_url: og_image_url_from(id: id, html: result[:output]),
         body: result[:output]
       )
     end
@@ -82,6 +84,18 @@ module Blog
       when String
         Time.parse(time_in_front_matter)
       end
+    end
+
+    # @param [Integer] id The ID of post
+    # @param [Nokogiri::HTML::DocumentFragment] html The HTML which may include og_image_url
+    # @return [String] the URL of image used for og:image
+    def og_image_url_from(id:, html:)
+      img = html.at('img')
+      return DEFAULT_OG_IMAGE_URL if img.nil?
+
+      url = img['src']
+      url = "https://blog.naoty.dev/#{id}/" + url unless url.start_with?('https://')
+      URI::DEFAULT_PARSER.make_regexp.match?(url) ? url : DEFAULT_OG_IMAGE_URL
     end
   end
 end
