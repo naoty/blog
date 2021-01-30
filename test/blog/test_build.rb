@@ -76,7 +76,9 @@ module Blog
       assert static_file_path.exist?
 
       document = Nokogiri::HTML(index_path.read)
-      assert_equal POST_NUMBER, document.search('li').length
+
+      # POST_NUMBER + link to home
+      assert_equal POST_NUMBER + 1, document.search('li').length
     end
 
     def assert_building_post_page(id:)

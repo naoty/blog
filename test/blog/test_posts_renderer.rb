@@ -17,7 +17,8 @@ module Blog
       html = renderer.render(posts)
       document = Nokogiri::HTML(html)
 
-      assert_equal 2, document.search('li').length
+      # links to posts and link to home
+      assert_equal 3, document.search('li').length
     end
   end
 end
