@@ -1,5 +1,6 @@
 {
   "name": "blog.naoty.dev",
+  "short_name": "blog.naoty.dev",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -12,7 +13,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://blog.naoty.dev",
   "background_color": "#fff",
   "display": "minimal-ui",
   "theme_color": "#fff",
