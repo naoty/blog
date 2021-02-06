@@ -1,0 +1,15 @@
+{
+  "schedule": [
+    "on friday"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "all minor dependencies",
+      "automerge": true
+    }
+  ]
+}
