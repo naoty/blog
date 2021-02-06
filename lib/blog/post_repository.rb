@@ -5,7 +5,7 @@ require 'yaml'
 module Blog
   # An object that decodes Posts from file system.
   class PostRepository
-    DEFAULT_OG_IMAGE_URL = -'https://blog.naoty.dev/icon.png'
+    DEFAULT_OG_IMAGE_URL = -'https://blog.naoty.dev/icon-512.png'
 
     attr_reader :source
 
