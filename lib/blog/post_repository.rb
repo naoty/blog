@@ -43,6 +43,7 @@ module Blog
       @pipeline ||= ::HTML::Pipeline.new(
         [
           ::HTML::Pipeline::MarkdownFilter,
+          ::HTML::Pipeline::ImageMaxWidthFilter,
           ::HTML::Pipeline::SyntaxHighlightFilter,
         ]
       )
