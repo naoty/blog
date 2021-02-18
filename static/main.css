@@ -28,12 +28,12 @@ main > *:last-child {
 
 h1 {
   font-size: 24px;
-  margin: 2rem 0 1.5rem 0;
+  margin: 2rem 0 1rem 0;
 }
 
 h2 {
   font-size: 18px;
-  margin: 2rem 0 1.5rem 0;
+  margin: 2rem 0 1rem 0;
 }
 
 hr,
@@ -42,7 +42,7 @@ pre,
 ol,
 table,
 ul {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 
 li > ol,
@@ -95,10 +95,21 @@ pre > code {
 
 .body h1 {
   font-size: 18px;
+  margin: 2rem 0 1.5rem 0;
 }
 
 .body h2 {
   font-size: 16px;
+  margin: 2rem 0 1.5rem 0;
+}
+
+.body hr,
+.body p,
+.body pre,
+.body ol,
+.body table,
+.body ul {
+  margin: 1.5rem 0;
 }
 
 .body img {
