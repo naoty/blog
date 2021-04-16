@@ -5,7 +5,7 @@ gem 'commonmarker'
 gem 'html-pipeline'
 gem 'rouge'
 
-gem 'nokogiri'
+gem 'nokogiri', ">= 1.11.0"
 gem 'rack'
 gem 'webrick'
 gem 'rubocop', require: false
