@@ -7,5 +7,6 @@ gem 'rouge'
 
 gem 'nokogiri'
 gem 'rack'
+gem 'webrick'
 gem 'rubocop', require: false
 gem 'simplecov', require: false, group: :test
