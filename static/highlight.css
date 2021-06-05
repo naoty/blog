@@ -33,7 +33,8 @@ pre.highlight > span.ss {
 pre.highlight > span.nv,
 pre.highlight > span.s,
 pre.highlight > span.s1,
-pre.highlight > span.s2 {
+pre.highlight > span.s2,
+pre.highlight > span.gi {
   color: #a3be8c;
 }
 
@@ -51,4 +52,8 @@ pre.highlight > span.c1 {
 
 pre.highlight > span.se {
   color: #ebcb8b;
+}
+
+pre.highlight > span.gd {
+  color: #bf616a;
 }
