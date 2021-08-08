@@ -163,10 +163,6 @@ ul.footer-links {
   ul {
     padding-left: 1rem;
   }
-
-  body img {
-    width: 200px;
-  }
 }
 
 @media (min-width: 36rem) {
@@ -179,9 +175,5 @@ ul.footer-links {
   ol,
   ul {
     padding-left: 1.5rem;
-  }
-
-  body img {
-    width: 300px;
   }
 }
