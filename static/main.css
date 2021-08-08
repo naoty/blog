@@ -127,7 +127,8 @@ blockquote {
 .body pre,
 .body ol,
 .body table,
-.body ul {
+.body ul,
+.body figure {
   margin: 1.5rem 0;
 }
 
@@ -137,6 +138,7 @@ blockquote {
 }
 
 .body figcaption {
+  margin: 0.5rem 0 0 0;
   color:rgba(0, 0, 0, 0.54);
   text-align: center;
 }
