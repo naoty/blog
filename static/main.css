@@ -126,7 +126,6 @@ blockquote {
 .body p,
 .body pre,
 .body ol,
-.body table,
 .body ul,
 .body figure {
   margin: 1.5rem 0;
@@ -141,6 +140,10 @@ blockquote {
   margin: 0.5rem 0 0 0;
   color:rgba(0, 0, 0, 0.54);
   text-align: center;
+}
+
+.body table {
+  margin: 1.5rem auto;
 }
 
 .footer-links {
