@@ -71,7 +71,7 @@ module Blog
     def split_front_matter(text)
       parts = text.split("---\n", 3)
       front_matter = YAML
-        .safe_load(parts[1], permitted_classes: [Time])
+        .safe_load(parts[1], permitted_classes: [Date, Time])
         .transform_keys(&:to_sym)
       [parts[2], front_matter]
     end
