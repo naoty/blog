@@ -12,7 +12,7 @@ module Blog
     def setup
       @tmpdir = Pathname.new(Dir.mktmpdir)
       source = setup_source(root: @tmpdir)
-      @command = Build.new(source: source, output: StringIO.new)
+      @command = Build.new(source: source, output: File.new(File::NULL, 'w'))
     end
 
     def teardown

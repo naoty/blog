@@ -16,7 +16,7 @@ module Blog
 
     def test_run
       Dir.chdir tmpdir do
-        command = Serve.new(source: source, output: StringIO.new)
+        command = Serve.new(source: source, output: File.new(File::NULL))
         command.stub :start_server, nil do
           command.run
         end
