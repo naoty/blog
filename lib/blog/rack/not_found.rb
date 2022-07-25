@@ -2,11 +2,13 @@ module Blog
   module Rack
     # Rack middleware to return 404.html when status code is 404
     class NotFound
-      def initialize(app)
+
+      # @param [Object] app Rack application to be wrapped
+      # @param [String] source The path to directory containing 404.html
+      def initialize(app, source:)
         @app = app
 
-        path = Blog.public_path.join('404.html')
-        @content = path.read
+        @content = source.join('404.html').read
         @content_length = @content.bytesize.to_s
       end
 

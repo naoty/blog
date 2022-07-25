@@ -25,7 +25,7 @@ module Blog
         source = @source
 
         ::Rack::Builder.new do
-          use Rack::NotFound
+          use Rack::NotFound, source: Blog.public_path
           use Rack::PostsBuild, path: '/', source: source
           use Rack::TagBuild, path: %r{/(?<tag>\S+)/}, source: source
           use Rack::PostBuild, path: %r{/(?<id>\d+)/}, source: source
