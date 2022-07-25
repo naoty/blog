@@ -2,11 +2,13 @@ require 'fileutils'
 
 module Blog
   class Command
-    attr_reader :source
+    private attr_reader :source, :output
 
-    # @param [Pathname] source the directory Post data are persisted
-    def initialize(source:)
+    # @param [Pathname] source The directory Post data are persisted
+    # @param [IO] output Output stream for messages
+    def initialize(source:, output:)
       @source = source
+      @output = output
     end
 
     def run

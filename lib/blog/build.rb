@@ -21,7 +21,7 @@ module Blog
       html = posts_renderer.render(posts)
       path = Blog.public_path.join('index.html')
       path.open('wb') { |file| file.puts html }
-      puts "build: #{path}"
+      output.puts "build: #{path}"
     end
 
     def build_post_pages(posts)
@@ -35,7 +35,7 @@ module Blog
 
       path = post_path.join('index.html')
       path.open('wb') { |file| file.puts html }
-      puts "build: #{path}"
+      output.puts "build: #{path}"
     end
 
     def build_tag_pages(posts)
@@ -59,14 +59,14 @@ module Blog
 
       path = tag_path.join('index.html')
       path.open('wb') { |file| file.puts html }
-      puts "build: #{path}"
+      output.puts "build: #{path}"
     end
 
     def build_feed(posts)
       feed = generate_feed(posts)
       path = Blog.public_path.join('feed.xml')
       path.open('wb') { |file| file.puts feed }
-      puts "build: #{path}"
+      output.puts "build: #{path}"
     end
 
     def generate_feed(posts)

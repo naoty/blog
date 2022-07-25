@@ -14,6 +14,8 @@ module Blog
     TEXT
     private_constant :HELP_MESSAGE
 
+    private attr_reader :output
+
     # @param [ARGV, Array<String>] arguments the arguments to +blog+ command.
     # @param [IO] output output stream for messages
     # @param [IO] error_output output stream for error messages
@@ -54,9 +56,9 @@ module Blog
     def command
       @command ||= case @arguments.first
                    when 'build'
-                     Build.new(source: source)
+                     Build.new(source: source, output: output)
                    when 'serve'
-                     Serve.new(source: source)
+                     Serve.new(source: source, output: output)
                    end
     end
   end
