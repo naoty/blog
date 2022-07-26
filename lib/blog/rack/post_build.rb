@@ -17,6 +17,12 @@ module Blog
         matched = env[::Rack::PATH_INFO].match(path)
         return app.call(env) if matched.nil? || matched[:id].nil?
 
+        if env.has_key?('HTTP_IF_MODIFIED_SINCE')
+          if_modified_since = Time.parse(env['HTTP_IF_MODIFIED_SINCE'])
+          metadata = post_repository.find_metadata(matched[:id])
+          return [304, {}, []] if if_modified_since >= metadata.updated_at
+        end
+
         build_post(id: matched[:id])
         app.call(env)
       rescue PostNotFound => e

@@ -26,6 +26,18 @@ module Blog
       post_from(path)
     end
 
+    # Get metadata of a Post with passed ID.
+    # @param [Integer, String] id The ID of a Post
+    # @raise [PostNotFound] raised when a Post with passed ID is not found
+    # @return [PostMetadata] metadata of a Post with passed ID
+    def find_metadata(id)
+      post_dir = source.children.find { |child| child.basename.to_s == id.to_s }
+      raise PostNotFound.new(id: id) if post_dir.nil?
+
+      path = post_dir.join('post.md')
+      post_metadata_from(path)
+    end
+
     # Get all posts from source and sort them by time attribute
     def all_posts_sorted_by_time
       source
@@ -98,6 +110,13 @@ module Blog
       url = img['src']
       url = "https://blog.naoty.dev/#{id}/" + url unless url.start_with?('http')
       URI::DEFAULT_PARSER.make_regexp.match?(url) ? url : DEFAULT_OG_IMAGE_URL
+    end
+
+    def post_metadata_from(path)
+      PostMetadata.new(
+        id: path.dirname.basename.to_s.to_i,
+        updated_at: path.stat.mtime
+      )
     end
   end
 end

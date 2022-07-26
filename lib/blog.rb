@@ -11,6 +11,7 @@ module Blog
   autoload :PostRenderer, 'blog/post_renderer'
   autoload :PostRepository, 'blog/post_repository'
   autoload :Post, 'blog/post'
+  autoload :PostMetadata, 'blog/post_metadata'
   autoload :PostsRenderer, 'blog/posts_renderer'
   autoload :Rack, 'blog/rack'
   autoload :Serve, 'blog/serve'
