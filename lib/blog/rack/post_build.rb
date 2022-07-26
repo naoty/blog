@@ -28,6 +28,7 @@ module Blog
       def build_post(id:)
         post = post_repository.find(id)
         html = post_renderer.render(post)
+        html = inject_reload_script(html)
         path = prepare_post_path(id: id)
         path.open('wb') { |file| file.puts html }
       end
@@ -44,6 +45,14 @@ module Blog
         dir = Blog.public_path.join(id)
         dir.mkdir unless dir.exist?
         dir.join('index.html')
+      end
+
+      def inject_reload_script(html)
+        document = Nokogiri::HTML.parse(html)
+        head = document.at_css('head')
+        script = document.create_element('script', src: '/reload.js')
+        head.add_child(script)
+        document.to_html
       end
     end
   end
