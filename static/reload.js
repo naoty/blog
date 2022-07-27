@@ -1,3 +1,14 @@
+function refresh() {
+  const request = new Request(location.href);
+  fetch(request)
+    .then((response) => response.text())
+    .then((text) => {
+      document.open();
+      document.write(text);
+      document.close();
+    });
+}
+
 window.addEventListener('load', function() {
-  console.log('TODO: implement live reload');
+  this.setTimeout(refresh, 5000);
 });
