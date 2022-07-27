@@ -107,8 +107,8 @@ module Blog
       img = html.at('img')
       return DEFAULT_OG_IMAGE_URL if img.nil?
 
-      url = img['src']
-      url = "https://blog.naoty.dev/#{id}/" + url unless url.start_with?('http')
+      path = File.expand_path(img['src'], "/#{id}/")
+      url = "https://blog.naoty.dev" + path
       URI::DEFAULT_PARSER.make_regexp.match?(url) ? url : DEFAULT_OG_IMAGE_URL
     end
 

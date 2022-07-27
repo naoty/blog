@@ -64,6 +64,17 @@ module Blog
       assert_equal Time.new(2020, 1, 1, 0, 0), time
     end
 
+    def test_og_image_url_from
+      {
+        [1, '/1/dummy.png'] => 'https://blog.naoty.dev/1/dummy.png',
+        [1, './dummy.png'] => 'https://blog.naoty.dev/1/dummy.png',
+      }.each do |(id, path), expected|
+        html = Nokogiri::HTML.parse("<img src='#{path}' />")
+        actual = repository.send(:og_image_url_from, id: id, html: html)
+        assert_equal expected, actual
+      end
+    end
+
     # @param [Integer] post_number the number of posts
     def setup_source(post_number: 1)
       post_number.times do |n|
