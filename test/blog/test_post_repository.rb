@@ -100,7 +100,7 @@ module Blog
 
     # @param [Integer] id the ID of dummy post
     def dummy_post_content(id: 1)
-      time = Time.new(2020, 1, 1) + (id - 1) * 24 * 60 * 60
+      time = Time.new(2020, 1, 1) + ((id - 1) * 24 * 60 * 60)
       <<~TEXT
         ---
         title: dummy
