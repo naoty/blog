@@ -51,10 +51,6 @@ li > ul {
   margin-bottom: 0;
 }
 
-p {
-  text-align: justify;
-}
-
 a {
   word-break: break-all;
 }
