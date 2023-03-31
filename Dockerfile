@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-alpine3.15
+FROM ruby:3.1.3-alpine3.15
 RUN apk add --update build-base
 WORKDIR /root/blog
 COPY Gemfile Gemfile.lock ./
