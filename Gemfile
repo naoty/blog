@@ -7,6 +7,7 @@ gem 'rouge'
 
 gem 'nokogiri', ">= 1.11.0"
 gem 'rack'
+gem 'rackup'
 gem 'rss'
 gem 'webrick'
 gem 'rubocop', require: false

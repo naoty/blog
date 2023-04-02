@@ -26,6 +26,9 @@ GEM
       ast (~> 2.4.1)
     racc (1.6.2)
     rack (3.0.7)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     rainbow (3.1.1)
     regexp_parser (2.7.0)
     rexml (3.2.5)
@@ -66,6 +69,7 @@ DEPENDENCIES
   html-pipeline
   nokogiri (>= 1.11.0)
   rack
+  rackup
   rouge
   rss
   rubocop

@@ -1,4 +1,5 @@
 require 'rack'
+require 'rackup'
 
 module Blog
   # +blog serve+ command
@@ -13,11 +14,11 @@ module Blog
     private
 
     def start_server
-      ::Rack::Handler::WEBrick.run(rack_app)
+      ::Rackup::Handler::WEBrick.run(rack_app)
     end
 
     def handle_sigint(_arg)
-      ::Rack::Handler::WEBrick.shutdown
+      ::Rackup::Handler::WEBrick.shutdown
     end
 
     def rack_app
