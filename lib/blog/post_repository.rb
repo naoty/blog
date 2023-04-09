@@ -5,8 +5,6 @@ require 'yaml'
 module Blog
   # An object that decodes Posts from file system.
   class PostRepository
-    DEFAULT_OG_IMAGE_URL = -'https://blog.naoty.dev/icon-512.png'
-
     attr_reader :source
 
     # @param [Pathname] source the directory Post data are persisted
@@ -102,14 +100,14 @@ module Blog
 
     # @param [Integer] id The ID of post
     # @param [Nokogiri::HTML::DocumentFragment] html The HTML which may include og_image_url
-    # @return [String] the URL of image used for og:image
+    # @return [String, nil] the URL of image used for og:image
     def og_image_url_from(id:, html:)
       img = html.at('img')
-      return DEFAULT_OG_IMAGE_URL if img.nil?
+      return nil if img.nil?
 
       path = File.expand_path(img['src'], "/#{id}/")
       url = "https://blog.naoty.dev" + path
-      URI::DEFAULT_PARSER.make_regexp.match?(url) ? url : DEFAULT_OG_IMAGE_URL
+      URI::DEFAULT_PARSER.make_regexp.match?(url) ? url : nil
     end
 
     def post_metadata_from(path)

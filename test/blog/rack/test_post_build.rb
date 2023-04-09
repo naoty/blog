@@ -20,7 +20,7 @@ module Blog
           description: 'description',
           time: Time.now,
           tags: ['tag'],
-          og_image_url: PostRepository::DEFAULT_OG_IMAGE_URL,
+          og_image_url: nil,
           body: ''
         )
         @repository = Minitest::Mock.new.expect(:find, post, ['1'])
