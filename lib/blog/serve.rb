@@ -5,13 +5,27 @@ module Blog
   # +blog serve+ command
   class Serve < Command
     def run
-      copy_static_files
+      link_static_files
       copy_post_assets
       trap(:INT, method(:handle_sigint))
       start_server
     end
 
     private
+
+    def link_static_files
+      Blog.root_path.join('static')
+        .glob('**/*')
+        .each { |path| link_static_file(path: path) }
+    end
+
+    def link_static_file(path:)
+      static_path = Blog.root_path.join('static')
+      relative_path = path.relative_path_from(static_path)
+      target_path = Blog.public_path.join(relative_path)
+      target_path.delete if target_path.exist?
+      FileUtils.ln_s(path, target_path)
+    end
 
     def start_server
       ::Rackup::Handler::WEBrick.run(rack_app)
