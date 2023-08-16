@@ -186,6 +186,10 @@ blockquote {
 
 /* Others */
 
+pre {
+    overflow-x: auto;
+}
+
 table {
     border-collapse: collapse;
 }
