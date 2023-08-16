@@ -1,0 +1,191 @@
+/* Layout */
+
+* {
+    box-sizing: border-box;
+}
+
+main {
+    padding: 1rem;
+
+    *:first-child {
+        margin-top: 0;
+    }
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 36rem) {
+    main {
+        min-height: 100vh;
+    }
+}
+
+@media (min-width: 36rem) {
+    main {
+        width: 36rem;
+        margin: 2rem auto;
+    }
+}
+
+h1,
+h2 {
+    margin: 2rem 0 1rem 0;
+}
+
+p,
+hr,
+ul,
+ol,
+table,
+pre {
+    margin: 1rem 0;
+}
+
+ul,
+ol {
+    padding-left: 1.5rem;
+}
+
+li {
+    > ol,
+    > ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+pre {
+    padding: 1rem;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+figcaption {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 2px 4px;
+}
+
+blockquote {
+    margin: 1rem;
+    padding-left: 1rem;
+}
+
+.body {
+    margin: 1.5rem 0;
+}
+
+.footer-links {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.footer-link {
+    display: inline;
+}
+
+/* Typography */
+
+html {
+    font-family: 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Biz UDGothic', Meiryo, sans-serif;
+    font-size: 100%;
+    line-height: 1.75;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+a {
+    word-break: break-all;
+}
+
+pre,
+code {
+    font-family: 'SF Mono', 'Cascadia Code', Menlo, monospace;
+}
+
+pre {
+    font-size: 0.8rem;
+}
+
+figcaption {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+blockquote {
+    font-style: italic;
+}
+
+.metadata {
+    font-size: 0.8rem;
+    font-family: 'SF Mono', 'Cascadia Code', Menlo, monospace;
+}
+
+.list-item {
+    font-size: 0.9rem;
+}
+
+/* Color */
+
+html {
+    color: #333;
+}
+
+main {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    background-color: #d3d3d3;
+}
+
+pre {
+    background-color: rgb(46, 52, 64);
+
+    > code {
+        color: #d8dee9;
+    }
+}
+
+table,
+th,
+td {
+    border: 1px solid #333;
+}
+
+blockquote {
+    color: rgba(0, 0, 0, 0.54);
+    border-left: 2px solid rgba(0, 0, 0, 0.54);
+}
+
+.title {
+    border-bottom: 1px solid #333;
+}
+
+.metadata {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+/* Others */
+
+table {
+    border-collapse: collapse;
+}
