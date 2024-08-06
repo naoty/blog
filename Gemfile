@@ -5,7 +5,7 @@ gem 'commonmarker'
 gem 'html-pipeline'
 gem 'rouge'
 
-gem 'nokogiri', ">= 1.11.0"
+gem 'nokogiri', ">= 1.16.5"
 gem 'rack'
 gem 'rackup'
 gem 'rss'
